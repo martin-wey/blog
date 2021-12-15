@@ -1,0 +1,12 @@
+name: "martiwey-blog"
+title: "Martin Weyssow - Blog"
+description: |
+  Martin Weyssow - Blog
+base_url: https://martiwey.github.io/blog/
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+output: distill::distill_article
