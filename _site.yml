@@ -2,6 +2,7 @@ name: "martiwey-blog"
 title: "Martin Weyssow - Blog"
 description: |
   Martin Weyssow - Blog
+output_dir: "docs"
 base_url: https://martiwey.github.io/blog/
 navbar:
   right:
