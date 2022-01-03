@@ -3,11 +3,19 @@ title: "Martin Weyssow - Blog"
 description: |
   Martin Weyssow - Blog
 output_dir: "docs"
-base_url: https://martiwey.github.io/blog/
+theme: blog.css
+base_url: https://martin-wey.github.io/blog/
 navbar:
   right:
     - text: "Home"
       href: index.html
     - text: "About"
       href: about.html
+    - icon: fa fa-twitter
+      href: https://twitter.com/MWeyssow
+    - icon: fa fa-github
+      href: https://github.com/martin-wey
+    - icon: fa fa-rss
+      href: index.xml
+  search: false
 output: distill::distill_article

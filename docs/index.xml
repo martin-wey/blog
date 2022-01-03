@@ -2,20 +2,24 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
     <title>Martin Weyssow - Blog</title>
-    <link>https://martiwey.github.io/blog/</link>
-    <atom:link href="https://martiwey.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
+    <link>https://martin-wey.github.io/blog/</link>
+    <atom:link href="https://martin-wey.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
     <description>Martin Weyssow - Blog
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 15 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 Dec 2021 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Welcome to Martin Weyssow - Blog</title>
-      <dc:creator>Nora Jones</dc:creator>
-      <link>https://martiwey.github.io/blog/posts/welcome</link>
-      <description>Welcome to our new blog, Martin Weyssow - Blog. We hope you enjoy 
-reading what we have to say!</description>
-      <guid>https://martiwey.github.io/blog/posts/welcome</guid>
-      <pubDate>Wed, 15 Dec 2021 00:00:00 +0000</pubDate>
+      <title>Finetuning CodeBERT for Semantic Code Search with PyTorch and Huggingface</title>
+      <dc:creator>Martin Weyssow</dc:creator>
+      <link>https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert</link>
+      <description>Over the past few years, search engines have become more powerful thanks to the rise of deep learning methods allowing for more efficient search. Software engineering research has also greatly capitalized on this      re-emergence of deep learning to make software development more effective, for instance by making tasks such as code search more efficient than with traditional information retrieval techniques. In this post, we'll take a look on how to finetune CodeBERT,  a state-of-the-art model of code, for code search using PyTorch and HuggingFace, in less than 100 lines of code.</description>
+      <category>CodeBERT</category>
+      <category>code search</category>
+      <category>finetuning</category>
+      <category>BERT</category>
+      <guid>https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert</guid>
+      <pubDate>Fri, 31 Dec 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert/../../images/shared_vecs.png" medium="image" type="image/png" width="960" height="540"/>
     </item>
   </channel>
 </rss>

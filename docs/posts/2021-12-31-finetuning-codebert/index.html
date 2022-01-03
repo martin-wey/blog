@@ -87,48 +87,53 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-<title>Martin Weyssow - Blog: Welcome to Martin Weyssow - Blog</title>
+<title>Martin Weyssow - Blog: Finetuning CodeBERT for Semantic Code Search with PyTorch and Huggingface</title>
 
-<meta property="description" itemprop="description" content="Welcome to our new blog, Martin Weyssow - Blog. We hope you enjoy &#10;reading what we have to say!"/>
+<meta property="description" itemprop="description" content="Over the past few years, search engines have become more powerful thanks to the rise of deep learning methods allowing for more efficient search. Software engineering research has also greatly capitalized on this      re-emergence of deep learning to make software development more effective, for instance by making tasks such as code search more efficient than with traditional information retrieval techniques. In this post, we&#39;ll take a look on how to finetune CodeBERT,  a state-of-the-art model of code, for code search using PyTorch and HuggingFace, in less than 100 lines of code."/>
 
-<link rel="canonical" href="https://martiwey.github.io/blog/posts/welcome/"/>
+<link rel="canonical" href="https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert/"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2021-12-15"/>
-<meta property="article:created" itemprop="dateCreated" content="2021-12-15"/>
-<meta name="article:author" content="Nora Jones"/>
+<meta property="article:published" itemprop="datePublished" content="2021-12-31"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-12-31"/>
+<meta name="article:author" content="Martin Weyssow"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Martin Weyssow - Blog: Welcome to Martin Weyssow - Blog"/>
+<meta property="og:title" content="Martin Weyssow - Blog: Finetuning CodeBERT for Semantic Code Search with PyTorch and Huggingface"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="Welcome to our new blog, Martin Weyssow - Blog. We hope you enjoy &#10;reading what we have to say!"/>
-<meta property="og:url" content="https://martiwey.github.io/blog/posts/welcome/"/>
+<meta property="og:description" content="Over the past few years, search engines have become more powerful thanks to the rise of deep learning methods allowing for more efficient search. Software engineering research has also greatly capitalized on this      re-emergence of deep learning to make software development more effective, for instance by making tasks such as code search more efficient than with traditional information retrieval techniques. In this post, we&#39;ll take a look on how to finetune CodeBERT,  a state-of-the-art model of code, for code search using PyTorch and HuggingFace, in less than 100 lines of code."/>
+<meta property="og:url" content="https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert/"/>
+<meta property="og:image" content="https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert/../../images/shared_vecs.png"/>
+<meta property="og:image:width" content="960"/>
+<meta property="og:image:height" content="540"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Martin Weyssow - Blog"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
-<meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="Martin Weyssow - Blog: Welcome to Martin Weyssow - Blog"/>
-<meta property="twitter:description" content="Welcome to our new blog, Martin Weyssow - Blog. We hope you enjoy &#10;reading what we have to say!"/>
-<meta property="twitter:url" content="https://martiwey.github.io/blog/posts/welcome/"/>
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:title" content="Martin Weyssow - Blog: Finetuning CodeBERT for Semantic Code Search with PyTorch and Huggingface"/>
+<meta property="twitter:description" content="Over the past few years, search engines have become more powerful thanks to the rise of deep learning methods allowing for more efficient search. Software engineering research has also greatly capitalized on this      re-emergence of deep learning to make software development more effective, for instance by making tasks such as code search more efficient than with traditional information retrieval techniques. In this post, we&#39;ll take a look on how to finetune CodeBERT,  a state-of-the-art model of code, for code search using PyTorch and HuggingFace, in less than 100 lines of code."/>
+<meta property="twitter:url" content="https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert/"/>
+<meta property="twitter:image" content="https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert/../../images/shared_vecs.png"/>
+<meta property="twitter:image:width" content="960"/>
+<meta property="twitter:image:height" content="540"/>
 
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
-<meta name="citation_title" content="Martin Weyssow - Blog: Welcome to Martin Weyssow - Blog"/>
-<meta name="citation_fulltext_html_url" content="https://martiwey.github.io/blog/posts/welcome/"/>
-<meta name="citation_online_date" content="2021/12/15"/>
-<meta name="citation_publication_date" content="2021/12/15"/>
-<meta name="citation_author" content="Nora Jones"/>
-<meta name="citation_author_institution" content="Spacely Sprockets"/>
+<meta name="citation_title" content="Martin Weyssow - Blog: Finetuning CodeBERT for Semantic Code Search with PyTorch and Huggingface"/>
+<meta name="citation_fulltext_html_url" content="https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert/"/>
+<meta name="citation_online_date" content="2021/12/31"/>
+<meta name="citation_publication_date" content="2021/12/31"/>
+<meta name="citation_author" content="Martin Weyssow"/>
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Welcome to Martin Weyssow - Blog"]},{"type":"character","attributes":{},"value":["Welcome to our new blog, Martin Weyssow - Blog. We hope you enjoy \nreading what we have to say!"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Nora Jones"]},{"type":"character","attributes":{},"value":["https://example.com/norajones"]},{"type":"character","attributes":{},"value":["Spacely Sprockets"]},{"type":"character","attributes":{},"value":["https://example.com/spacelysprokets"]}]}]},{"type":"character","attributes":{},"value":["12-15-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://martiwey.github.io/blog/posts/welcome/"]},{"type":"character","attributes":{},"value":["https://martiwey.github.io/blog/posts/welcome/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","categories","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Finetuning CodeBERT for Semantic Code Search with PyTorch and Huggingface"]},{"type":"character","attributes":{},"value":["Over the past few years, search engines have become more powerful thanks to the rise of deep learning methods allowing for more efficient search. Software engineering research has also greatly capitalized on this      re-emergence of deep learning to make software development more effective, for instance by making tasks such as code search more efficient than with traditional information retrieval techniques. In this post, we'll take a look on how to finetune CodeBERT,  a state-of-the-art model of code, for code search using PyTorch and HuggingFace, in less than 100 lines of code."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Martin Weyssow"]},{"type":"character","attributes":{},"value":["https://example.com/norajones"]}]}]},{"type":"character","attributes":{},"value":["2021-12-31"]},{"type":"character","attributes":{},"value":["../../images/shared_vecs.png"]},{"type":"character","attributes":{},"value":["CodeBERT","code search","finetuning","BERT"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]},{"type":"character","attributes":{},"value":["https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert/"]},{"type":"character","attributes":{},"value":["https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"NULL"}
+  {"type":"character","attributes":{},"value":["finetuning-codebert_files/anchor-4.2.2/anchor.min.js","finetuning-codebert_files/bowser-1.9.3/bowser.min.js","finetuning-codebert_files/distill-2.2.21/template.v2.js","finetuning-codebert_files/header-attrs-2.11/header-attrs.js","finetuning-codebert_files/jquery-3.6.0/jquery-3.6.0.js","finetuning-codebert_files/jquery-3.6.0/jquery-3.6.0.min.js","finetuning-codebert_files/jquery-3.6.0/jquery-3.6.0.min.map","finetuning-codebert_files/popper-2.6.0/popper.min.js","finetuning-codebert_files/tippy-6.2.7/tippy-bundle.umd.min.js","finetuning-codebert_files/tippy-6.2.7/tippy-light-border.css","finetuning-codebert_files/tippy-6.2.7/tippy.css","finetuning-codebert_files/tippy-6.2.7/tippy.umd.min.js","finetuning-codebert_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -478,265 +483,6 @@ d-title {
 <link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
 <link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
-<script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-<script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-<script type="application/javascript">
-
-function getMeta(metaName) {
-  var metas = document.getElementsByTagName('meta');
-  for (let i = 0; i < metas.length; i++) {
-    if (metas[i].getAttribute('name') === metaName) {
-      return metas[i].getAttribute('content');
-    }
-  }
-  return '';
-}
-
-function offsetURL(url) {
-  var offset = getMeta('distill:offset');
-  return offset ? offset + '/' + url : url;
-}
-
-function createFuseIndex() {
-
-  // create fuse index
-  var options = {
-    keys: [
-      { name: 'title', weight: 20 },
-      { name: 'categories', weight: 15 },
-      { name: 'description', weight: 10 },
-      { name: 'contents', weight: 5 },
-    ],
-    ignoreLocation: true,
-    threshold: 0
-  };
-  var fuse = new window.Fuse([], options);
-
-  // fetch the main search.json
-  return fetch(offsetURL('search.json'))
-    .then(function(response) {
-      if (response.status == 200) {
-        return response.json().then(function(json) {
-          // index main articles
-          json.articles.forEach(function(article) {
-            fuse.add(article);
-          });
-          // download collections and index their articles
-          return Promise.all(json.collections.map(function(collection) {
-            return fetch(offsetURL(collection)).then(function(response) {
-              if (response.status === 200) {
-                return response.json().then(function(articles) {
-                  articles.forEach(function(article) {
-                    fuse.add(article);
-                  });
-                })
-              } else {
-                return Promise.reject(
-                  new Error('Unexpected status from search index request: ' +
-                            response.status)
-                );
-              }
-            });
-          })).then(function() {
-            return fuse;
-          });
-        });
-
-      } else {
-        return Promise.reject(
-          new Error('Unexpected status from search index request: ' +
-                      response.status)
-        );
-      }
-    });
-}
-
-window.document.addEventListener("DOMContentLoaded", function (event) {
-
-  // get search element (bail if we don't have one)
-  var searchEl = window.document.getElementById('distill-search');
-  if (!searchEl)
-    return;
-
-  createFuseIndex()
-    .then(function(fuse) {
-
-      // make search box visible
-      searchEl.classList.remove('hidden');
-
-      // initialize autocomplete
-      var options = {
-        autoselect: true,
-        hint: false,
-        minLength: 2,
-      };
-      window.autocomplete(searchEl, options, [{
-        source: function(query, callback) {
-          const searchOptions = {
-            isCaseSensitive: false,
-            shouldSort: true,
-            minMatchCharLength: 2,
-            limit: 10,
-          };
-          var results = fuse.search(query, searchOptions);
-          callback(results
-            .map(function(result) { return result.item; })
-          );
-        },
-        templates: {
-          suggestion: function(suggestion) {
-            var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
-              ? `<img src="${offsetURL(suggestion.preview)}"</img>`
-              : '';
-            var html = `
-              <div class="search-item">
-                <h3>${suggestion.title}</h3>
-                <div class="search-item-description">
-                  ${suggestion.description || ''}
-                </div>
-                <div class="search-item-preview">
-                  ${img}
-                </div>
-              </div>
-            `;
-            return html;
-          }
-        }
-      }]).on('autocomplete:selected', function(event, suggestion) {
-        window.location.href = offsetURL(suggestion.path);
-      });
-      // remove inline display style on autocompleter (we want to
-      // manage responsive display via css)
-      $('.algolia-autocomplete').css("display", "");
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-
-});
-
-</script>
-
-<style type="text/css">
-
-.nav-search {
-  font-size: x-small;
-}
-
-/* Algolioa Autocomplete */
-
-.algolia-autocomplete {
-  display: inline-block;
-  margin-left: 10px;
-  vertical-align: sub;
-  background-color: white;
-  color: black;
-  padding: 6px;
-  padding-top: 8px;
-  padding-bottom: 0;
-  border-radius: 6px;
-  border: 1px #0F2E3D solid;
-  width: 180px;
-}
-
-
-@media screen and (max-width: 768px) {
-  .distill-site-nav .algolia-autocomplete {
-    display: none;
-    visibility: hidden;
-  }
-  .distill-site-nav.responsive .algolia-autocomplete {
-    display: inline-block;
-    visibility: visible;
-  }
-  .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-    margin-left: 0;
-    width: 400px;
-    max-height: 400px;
-  }
-}
-
-.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-  width: 90%;
-  outline: none;
-  border: none;
-}
-
-.algolia-autocomplete .aa-hint {
-  color: #999;
-}
-.algolia-autocomplete .aa-dropdown-menu {
-  width: 550px;
-  max-height: 70vh;
-  overflow-x: visible;
-  overflow-y: scroll;
-  padding: 5px;
-  margin-top: 3px;
-  margin-left: -150px;
-  background-color: #fff;
-  border-radius: 5px;
-  border: 1px solid #999;
-  border-top: none;
-}
-
-.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-  cursor: pointer;
-  padding: 5px 4px;
-  border-bottom: 1px solid #eee;
-}
-
-.algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-  border-bottom: none;
-  margin-bottom: 2px;
-}
-
-.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-  overflow: hidden;
-  font-size: 0.8em;
-  line-height: 1.4em;
-}
-
-.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-  font-size: 1rem;
-  margin-block-start: 0;
-  margin-block-end: 5px;
-}
-
-.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-  display: inline-block;
-  overflow: hidden;
-  height: 2.8em;
-  width: 80%;
-  margin-right: 4%;
-}
-
-.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-  display: inline-block;
-  width: 15%;
-}
-
-.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-  height: 3em;
-  width: auto;
-  display: none;
-}
-
-.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-  display: initial;
-}
-
-.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-  background-color: #eee;
-}
-.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-  font-weight: bold;
-  font-style: normal;
-}
-
-</style>
-
-
 <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -2054,6 +1800,328 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+</style>
+<style type="text/css">/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono');
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font: "Fira Mono", sans-serif;
+  --mono-font: "Fira Mono", monospace;
+  --body-font: "Lato", sans-serif;
+  --navbar-font: "Fira Mono", serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       black;
+  --text-size:        15px;
+  --hover-color:      #ff6700;
+  --bkgd-color:       white;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+
+.distill-site-nav {
+  color: black;
+  background-color: white;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav .title {
+  font-size: 18px;
+  font-weight: 500;
+}
+</style>
+<style type="text/css">
+/* base style */
+
+/* FONT FAMILIES */
+
+:root {
+  --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+body,
+.posts-list .post-preview p,
+.posts-list .description p {
+  font-family: var(--body-font), var(--body-default);
+}
+
+h1, h2, h3, h4, h5, h6,
+.posts-list .post-preview h2,
+.posts-list .description h2 {
+  font-family: var(--heading-font), var(--heading-default);
+}
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: var(--mono-font), var(--mono-default);
+}
+
+
+/*-- TITLE --*/
+d-title h1,
+.posts-list > h1 {
+  color: var(--title-color, black);
+}
+
+d-title h1 {
+  font-size: var(--title-size, 50px);
+}
+
+/*-- HEADERS --*/
+d-article h1,
+d-article h2,
+d-article h3,
+d-article h4,
+d-article h5,
+d-article h6 {
+  color: var(--header-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- BODY --*/
+d-article > p,  /* only text inside of <p> tags */
+d-article > ul, /* lists */
+d-article > ol {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+  font-size: var(--body-size, 1.06rem);
+}
+
+
+/*-- CODE --*/
+d-article div.sourceCode code,
+d-article pre code {
+  font-size: var(--code-size, 14px);
+}
+
+/*-- ASIDE --*/
+d-article aside {
+  font-size: var(--aside-size, 12px);
+  color: var(--aside-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- FIGURE CAPTIONS --*/
+figure .caption,
+figure figcaption,
+.figure .caption {
+  font-size: var(--fig-cap-size, 13px);
+  color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- METADATA --*/
+d-byline h3 {
+  font-size: var(--heading-size, 0.6rem);
+  color: var(--heading-color, rgba(0, 0, 0, 0.5));
+}
+
+d-byline {
+  font-size: var(--body-size, 0.8rem);
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+d-byline a,
+d-article d-byline a {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- TABLE OF CONTENTS --*/
+.d-contents nav h3 {
+  font-size: var(--heading-size, 18px);
+}
+
+.d-contents nav a {
+  font-size: var(--contents-size, 13px);
+}
+
+/*-- APPENDIX --*/
+d-appendix h3 {
+  font-size: var(--heading-size, 15px);
+  color: var(--heading-color, rgba(0, 0, 0, 0.65));
+}
+
+d-appendix {
+  font-size: var(--text-size, 0.8em);
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+d-appendix d-footnote-list a.footnote-backlink {
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+.distill-site-header .title {
+  font-size: var(--title-size, 18px);
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header a,
+.nav-dropdown .nav-dropbtn {
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.nav-dropdown .nav-dropbtn {
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  font-size: var(--text-size, 15px);
+}
+
+.distill-site-header a:hover,
+.nav-dropdown:hover .nav-dropbtn {
+  color: var(--hover-color, white);
+}
+
+.distill-site-header {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer a:hover {
+  color: var(--hover-color, white);
+}</style>
 <!--/radix_placeholder_distill-->
   <script src="../../site_libs/header-attrs-2.11/header-attrs.js"></script>
   <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -2076,7 +2144,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Welcome to Martin Weyssow - Blog","description":"Welcome to our new blog, Martin Weyssow - Blog. We hope you enjoy \nreading what we have to say!","authors":[{"author":"Nora Jones","authorURL":"https://example.com/norajones","affiliation":"Spacely Sprockets","affiliationURL":"https://example.com/spacelysprokets","orcidID":""}],"publishedDate":"2021-12-15T00:00:00.000-05:00","citationText":"Jones, 2021"}
+{"title":"Finetuning CodeBERT for Semantic Code Search with PyTorch and Huggingface","description":"Over the past few years, search engines have become more powerful thanks to the rise of deep learning methods allowing for more efficient search. Software engineering research has also greatly capitalized on this      re-emergence of deep learning to make software development more effective, for instance by making tasks such as code search more efficient than with traditional information retrieval techniques. In this post, we'll take a look on how to finetune CodeBERT,  a state-of-the-art model of code, for code search using PyTorch and HuggingFace, in less than 100 lines of code.","authors":[{"author":"Martin Weyssow","authorURL":"https://example.com/norajones","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-12-31T00:00:00.000+01:00","citationText":"Weyssow, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2085,11 +2153,19 @@ document.addEventListener('DOMContentLoaded', function() {
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
 <a href="../../index.html" class="title">Martin Weyssow - Blog</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
 <a href="../../index.html">Home</a>
 <a href="../../about.html">About</a>
+<a href="https://twitter.com/MWeyssow">
+<i class="fa fa-twitter" aria-hidden="true"></i>
+</a>
+<a href="https://github.com/martin-wey">
+<i class="fa fa-github" aria-hidden="true"></i>
+</a>
+<a href="../../index.xml">
+<i class="fa fa-rss" aria-hidden="true"></i>
+</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -2099,20 +2175,60 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Welcome to Martin Weyssow - Blog</h1>
+<h1>Finetuning CodeBERT for Semantic Code Search with PyTorch and Huggingface</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:CodeBERT" class="dt-tag">CodeBERT</a>
+  <a href="../../index.html#category:code_search" class="dt-tag">code search</a>
+  <a href="../../index.html#category:finetuning" class="dt-tag">finetuning</a>
+  <a href="../../index.html#category:BERT" class="dt-tag">BERT</a>
+</div>
 <!--/radix_placeholder_categories-->
-<p><p>Welcome to our new blog, Martin Weyssow - Blog. We hope you enjoy reading what we have to say!</p></p>
+<p><p>Over the past few years, search engines have become more powerful thanks to the rise of deep learning methods allowing for more efficient search. Software engineering research has also greatly capitalized on this re-emergence of deep learning to make software development more effective, for instance by making tasks such as code search more efficient than with traditional information retrieval techniques. In this post, we’ll take a look on how to finetune CodeBERT, a state-of-the-art model of code, for code search using PyTorch and HuggingFace, in less than 100 lines of code.</p></p>
 </div>
 
 <div class="d-byline">
-  Nora Jones <a href="https://example.com/norajones" class="uri">https://example.com/norajones</a> (Spacely Sprockets)<a href="https://example.com/spacelysprokets" class="uri">https://example.com/spacelysprokets</a>
+  Martin Weyssow <a href="https://example.com/norajones" class="uri">https://example.com/norajones</a> 
   
-<br/>12-15-2021
+<br/>2021-12-31
 </div>
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#what-is-semantic-code-search">What is semantic code search?</a></li>
+<li><a href="#finetuning-codebert-for-code-search">Finetuning CodeBERT for code search</a>
+<ul>
+<li><a href="#dataset">Dataset</a></li>
+<li><a href="#dependencies-and-environment-setup">Dependencies and environment setup</a></li>
+<li><a href="#model-and-data-loading">Model and data loading</a></li>
+<li><a href="#training-loop">Training loop</a></li>
+<li><a href="#testing-the-model">Testing the model</a></li>
+</ul></li>
+<li><a href="#results-analysis-and-discussion">Results analysis and discussion</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</nav>
+</div>
+<h1 id="what-is-semantic-code-search">What is semantic code search?</h1>
+<p><strong>Code search</strong> consists of retrieving relevant code snippets from a corpus of code given a <strong>query</strong>. The query intends to bear the user’s information need and is usually expressed as a natural language formulation. That is, the query encodes <strong>semantic meaning</strong> about what a user is seeking to implement, <em>e.g.,</em> how to compute matrix multiplication. This is very similar to any search engine whose main purpose is to provide useful information to the user based on an input query.</p>
+<p>For more details on semantic code search, I highly recommend reading the following blog post: <a href="https://github.blog/2018-09-18-towards-natural-language-semantic-code-search/" class="uri">https://github.blog/2018-09-18-towards-natural-language-semantic-code-search/</a></p>
+<h1 id="finetuning-codebert-for-code-search">Finetuning CodeBERT for code search</h1>
+<h3 id="dataset">Dataset</h3>
+<h3 id="dependencies-and-environment-setup">Dependencies and environment setup</h3>
+<h3 id="model-and-data-loading">Model and data loading</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer, AutoModel</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(<span class="st">&#39;huggingface/CodeBERTa-small-v1&#39;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModel.from_pretrained(<span class="st">&#39;huggingface/CodeBERTa-small-v1&#39;</span>)</span></code></pre></div>
+</div>
+<h3 id="training-loop">Training loop</h3>
+<h3 id="testing-the-model">Testing the model</h3>
+<h1 id="results-analysis-and-discussion">Results analysis and discussion</h1>
+<h1 id="conclusion">Conclusion</h1>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2127,12 +2243,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="appendix-bottom">
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Jones (2021, Dec. 15). Martin Weyssow - Blog: Welcome to Martin Weyssow - Blog. Retrieved from https://martiwey.github.io/blog/posts/welcome/</pre>
+  <pre class="citation-appendix short">Weyssow (2021, Dec. 31). Martin Weyssow - Blog: Finetuning CodeBERT for Semantic Code Search with PyTorch and Huggingface. Retrieved from https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert/</pre>
   <p>BibTeX citation</p>
-  <pre class="citation-appendix long">@misc{jones2021welcome,
-  author = {Jones, Nora},
-  title = {Martin Weyssow - Blog: Welcome to Martin Weyssow - Blog},
-  url = {https://martiwey.github.io/blog/posts/welcome/},
+  <pre class="citation-appendix long">@misc{weyssow2021finetuning,
+  author = {Weyssow, Martin},
+  title = {Martin Weyssow - Blog: Finetuning CodeBERT for Semantic Code Search with PyTorch and Huggingface},
+  url = {https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert/},
   year = {2021}
 }</pre>
 </div>

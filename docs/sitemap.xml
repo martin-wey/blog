@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
-    <loc>https://martiwey.github.io/blog/about.html</loc>
-    <lastmod>2021-12-15T15:33:28-05:00</lastmod>
+    <loc>https://martin-wey.github.io/blog/about.html</loc>
+    <lastmod>2021-12-30T14:47:59+01:00</lastmod>
   </url>
   <url>
-    <loc>https://martiwey.github.io/blog/</loc>
-    <lastmod>2021-12-15T15:33:28-05:00</lastmod>
+    <loc>https://martin-wey.github.io/blog/</loc>
+    <lastmod>2021-12-30T15:30:23+01:00</lastmod>
   </url>
   <url>
-    <loc>https://martiwey.github.io/blog/posts/welcome/</loc>
-    <lastmod>2021-12-15T15:33:33-05:00</lastmod>
+    <loc>https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert/</loc>
+    <lastmod>2022-01-02T11:12:44+01:00</lastmod>
   </url>
 </urlset>

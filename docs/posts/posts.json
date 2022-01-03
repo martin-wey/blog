@@ -1,19 +1,26 @@
 [
   {
-    "path": "posts/welcome/",
-    "title": "Welcome to Martin Weyssow - Blog",
-    "description": "Welcome to our new blog, Martin Weyssow - Blog. We hope you enjoy \nreading what we have to say!",
+    "path": "posts/2021-12-31-finetuning-codebert/",
+    "title": "Finetuning CodeBERT for Semantic Code Search with PyTorch and Huggingface",
+    "description": "Over the past few years, search engines have become more powerful thanks to the rise of deep learning methods allowing for more efficient search. Software engineering research has also greatly capitalized on this      re-emergence of deep learning to make software development more effective, for instance by making tasks such as code search more efficient than with traditional information retrieval techniques. In this post, we'll take a look on how to finetune CodeBERT,  a state-of-the-art model of code, for code search using PyTorch and HuggingFace, in less than 100 lines of code.",
     "author": [
       {
-        "name": "Nora Jones",
+        "name": "Martin Weyssow",
         "url": "https://example.com/norajones"
       }
     ],
-    "date": "2021-12-15",
-    "categories": [],
-    "contents": "\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2021-12-15T15:33:33-05:00",
-    "input_file": {}
+    "date": "2021-12-31",
+    "categories": [
+      "CodeBERT",
+      "code search",
+      "finetuning",
+      "BERT"
+    ],
+    "contents": "\r\n\r\nContents\r\nWhat is semantic code search?\r\nFinetuning CodeBERT for code search\r\nDataset\r\nDependencies and environment setup\r\nModel and data loading\r\nTraining loop\r\nTesting the model\r\n\r\nResults analysis and discussion\r\nConclusion\r\n\r\nWhat is semantic code search?\r\nCode search consists of retrieving relevant code snippets from a corpus of code given a query. The query intends to bear the user’s information need and is usually expressed as a natural language formulation. That is, the query encodes semantic meaning about what a user is seeking to implement, e.g., how to compute matrix multiplication. This is very similar to any search engine whose main purpose is to provide useful information to the user based on an input query.\r\nFor more details on semantic code search, I highly recommend reading the following blog post: https://github.blog/2018-09-18-towards-natural-language-semantic-code-search/\r\nFinetuning CodeBERT for code search\r\nDataset\r\nDependencies and environment setup\r\nModel and data loading\r\n\r\nfrom transformers import AutoTokenizer, AutoModel\r\ntokenizer = AutoTokenizer.from_pretrained('huggingface/CodeBERTa-small-v1')\r\nmodel = AutoModel.from_pretrained('huggingface/CodeBERTa-small-v1')\r\n\r\nTraining loop\r\nTesting the model\r\nResults analysis and discussion\r\nConclusion\r\n\r\n\r\n\r\n",
+    "preview": "posts/2021-12-31-finetuning-codebert/../../images/shared_vecs.png",
+    "last_modified": "2022-01-02T11:12:44+01:00",
+    "input_file": {},
+    "preview_width": 960,
+    "preview_height": 540
   }
 ]
