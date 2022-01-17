@@ -59,9 +59,9 @@ d-appendix {
 /* These properties only apply to Distill sites and blogs  */
 
 .distill-site-header {
-  --title-size:       18px;
+  --title-size:       22px;
   --text-color:       black;
-  --text-size:        15px;
+  --text-size:        18px;
   --hover-color:      #ff6700;
   --bkgd-color:       white;
 }
@@ -86,5 +86,15 @@ d-appendix {
 .distill-site-nav .title {
   font-size: 18px;
   font-weight: 500;
+}
+
+
+d-article div.sourceCode pre {
+  max-height: 300px;
+  overflow: auto !important;
+  word-wrap: normal;
+  margin: 0 0 1.275em;
+  padding: 0.85em 1em;
+  background: rgba(0, 0, 0, 0.02);
 }
 

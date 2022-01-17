@@ -1939,9 +1939,9 @@ d-appendix {
 /* These properties only apply to Distill sites and blogs  */
 
 .distill-site-header {
-  --title-size:       18px;
+  --title-size:       22px;
   --text-color:       black;
-  --text-size:        15px;
+  --text-size:        18px;
   --hover-color:      #ff6700;
   --bkgd-color:       white;
 }
@@ -1966,6 +1966,16 @@ d-appendix {
 .distill-site-nav .title {
   font-size: 18px;
   font-weight: 500;
+}
+
+
+d-article div.sourceCode pre {
+  max-height: 300px;
+  overflow: auto !important;
+  word-wrap: normal;
+  margin: 0 0 1.275em;
+  padding: 0.85em 1em;
+  background: rgba(0, 0, 0, 0.02);
 }
 </style>
 <style type="text/css">
@@ -2156,7 +2166,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 </div>
 <div class="nav-right">
 <a href="../../index.html">Home</a>
-<a href="../../about.html">About</a>
+<a href="https://martin-wey.github.io/">About</a>
 <a href="https://twitter.com/MWeyssow">
 <i class="fa fa-twitter" aria-hidden="true"></i>
 </a>
@@ -2215,20 +2225,92 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h1 id="what-is-semantic-code-search">What is semantic code search?</h1>
 <p><strong>Code search</strong> consists of retrieving relevant code snippets from a corpus of code given a <strong>query</strong>. The query intends to bear the user’s information need and is usually expressed as a natural language formulation. That is, the query encodes <strong>semantic meaning</strong> about what a user is seeking to implement, <em>e.g.,</em> how to compute matrix multiplication. This is very similar to any search engine whose main purpose is to provide useful information to the user based on an input query.</p>
 <p>For more details on semantic code search, I highly recommend reading the following blog post: <a href="https://github.blog/2018-09-18-towards-natural-language-semantic-code-search/" class="uri">https://github.blog/2018-09-18-towards-natural-language-semantic-code-search/</a></p>
+<p>The remaining of this blog post focuses on the finetuning of CodeBERT for code search without going into much details about the architecture of the model which can be found in the paper: <a href="https://arxiv.org/abs/2002.08155" class="uri">https://arxiv.org/abs/2002.08155</a></p>
 <h1 id="finetuning-codebert-for-code-search">Finetuning CodeBERT for code search</h1>
 <h3 id="dataset">Dataset</h3>
+<p>Before diving into the implementation, let us choose a corpus of code that can be used for code search. Fortunately for us, we can use <a href="https://github.com/github/CodeSearchNet">CodeSearchNet</a> dataset which has been widely used in the code search research. We are going to use a sanitized version of the dataset published by the CodeBERT team.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Programming language</th>
+<th>Training</th>
+<th>Valid</th>
+<th>Test</th>
+<th>Candidates code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Python</td>
+<td>251,820</td>
+<td>13,914</td>
+<td>14,918</td>
+<td>43,827</td>
+</tr>
+<tr class="even">
+<td>PHP</td>
+<td>241,241</td>
+<td>12,982</td>
+<td>14,014</td>
+<td>52,660</td>
+</tr>
+<tr class="odd">
+<td>Go</td>
+<td>167,288</td>
+<td>7,325</td>
+<td>8,122</td>
+<td>28,120</td>
+</tr>
+<tr class="even">
+<td>Java</td>
+<td>164,923</td>
+<td>5,183</td>
+<td>10,955</td>
+<td>40,347</td>
+</tr>
+<tr class="odd">
+<td>Javascript</td>
+<td>58,025</td>
+<td>3,885</td>
+<td>3,291</td>
+<td>13,981</td>
+</tr>
+<tr class="even">
+<td>Ruby</td>
+<td>24,927</td>
+<td>1,400</td>
+<td>1,261</td>
+<td>4,360</td>
+</tr>
+</tbody>
+</table>
+<p>The dataset is available for 6 programming languages each of them divided into training/validation/test and candidates code. In this tutorial, we are going to use the Java dataset but the implementation described in this post can be used with the language of your choice.</p>
+<p>For practical reasons, I uploaded all 6 datasets on Huggingface Hub. For Java, you can check it out here: <a href="https://huggingface.co/datasets/martiwey/codesearchnet-java" class="uri">https://huggingface.co/datasets/martiwey/codesearchnet-java</a></p>
+<p>For the other ones, simply change <code>java</code> in the url by the desired programming language.</p>
 <h3 id="dependencies-and-environment-setup">Dependencies and environment setup</h3>
+<p>The main libraries you need are the following: <a href="https://pytorch.org/">PyTorch</a>, <a href="https://huggingface.co/docs/transformers/index">Transformers</a>, <a href="https://huggingface.co/docs/datasets/">Datasets</a>, and <a href="https://huggingface.co/docs/accelerate/">Accelerate</a>. Thanks to the latter, there is no need to setup your environment for GPU usage as the library will do it for you without having to change anything in your code.</p>
 <h3 id="model-and-data-loading">Model and data loading</h3>
+<p>As CodeBERT is already a pretrained model, there is no need to train a new tokenizer or the model from scratch. Everything can be loaded using the two following lines of code.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer, AutoModel</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(<span class="st">&#39;huggingface/CodeBERTa-small-v1&#39;</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModel.from_pretrained(<span class="st">&#39;huggingface/CodeBERTa-small-v1&#39;</span>)</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(<span class="st">&#39;microsoft/codebert-base&#39;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModel.from_pretrained(<span class="st">&#39;microsoft/codebert-base&#39;</span>)</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/model_download.png" width="75%" style="float:center; padding:10px" /></p>
+</div>
+<p>Then, we simply load the CodeSearchNet java dataset. The datasets library will take care of caching everything for a faster access to the data.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datasets <span class="im">import</span> load_dataset</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dataset_train <span class="op">=</span> load_dataset(<span class="st">&#39;martiwey/codesearchnet-java&#39;</span>, split<span class="op">=</span><span class="st">&#39;train&#39;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dataset_valid <span class="op">=</span> load_dataset(<span class="st">&#39;martiwey/codesearchnet-java&#39;</span>, split<span class="op">=</span><span class="st">&#39;validation&#39;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>dataset_codebase <span class="op">=</span> load_dataset(<span class="st">&#39;martiwey/codesearchnet-java&#39;</span>, split<span class="op">=</span><span class="st">&#39;train&#39;</span>, data_files<span class="op">=</span><span class="st">&#39;codebase.jsonl&#39;</span>)</span></code></pre></div>
 </div>
 <h3 id="training-loop">Training loop</h3>
 <h3 id="testing-the-model">Testing the model</h3>
 <h1 id="results-analysis-and-discussion">Results analysis and discussion</h1>
 <h1 id="conclusion">Conclusion</h1>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -30,18 +30,53 @@ knitr::opts_chunk$set(echo = FALSE)
 
 For more details on semantic code search, I highly recommend reading the following blog post: https://github.blog/2018-09-18-towards-natural-language-semantic-code-search/
 
+The remaining of this blog post focuses on the finetuning of CodeBERT for code search without going into much details about the architecture of the model which can be found in the paper: https://arxiv.org/abs/2002.08155
+
 # Finetuning CodeBERT for code search
 
 ### Dataset
 
+Before diving into the implementation, let us choose a corpus of code that can be used for code search. Fortunately for us, we can use [CodeSearchNet](https://github.com/github/CodeSearchNet) dataset which has been widely used in the code search research. We are going to use a sanitized version of the dataset published by the CodeBERT team. 
+
+| Programming language | Training  | Valid  | Test   | Candidates code |
+|----------------------|-----------|--------|--------|-----------------|
+| Python               | 251,820   | 13,914 | 14,918 | 43,827          |
+| PHP                  | 241,241   | 12,982 | 14,014 | 52,660          |
+| Go                   | 167,288   | 7,325  | 8,122  | 28,120          |
+| Java                 | 164,923   |  5,183 | 10,955 | 40,347          |
+| Javascript           | 58,025    | 3,885  | 3,291  | 13,981          |
+| Ruby                 | 24,927    | 1,400  | 1,261  | 4,360           |
+
+The dataset is available for 6 programming languages each of them divided into training/validation/test and candidates code. In this tutorial, we are going to use the Java dataset but the implementation described in this post can be used with the language of your choice.
+
+For practical reasons, I uploaded all 6 datasets on Huggingface Hub. For Java, you can check it out here: https://huggingface.co/datasets/martiwey/codesearchnet-java
+
+For the other ones, simply change `java` in the url by the desired programming language.
+
 ### Dependencies and environment setup 
+
+The main libraries you need are the following: [PyTorch](https://pytorch.org/), [Transformers](https://huggingface.co/docs/transformers/index), [Datasets](https://huggingface.co/docs/datasets/), and [Accelerate](https://huggingface.co/docs/accelerate/). Thanks to the latter, there is no need to setup your environment for GPU usage as the library will do it for you without having to change anything in your code. 
 
 ### Model and data loading
 
+As CodeBERT is already a pretrained model, there is no need to train a new tokenizer or the model from scratch. Everything can be loaded using the two following lines of code.
+
 ```{python, eval=FALSE, echo=TRUE}
 from transformers import AutoTokenizer, AutoModel
-tokenizer = AutoTokenizer.from_pretrained('huggingface/CodeBERTa-small-v1')
-model = AutoModel.from_pretrained('huggingface/CodeBERTa-small-v1')
+tokenizer = AutoTokenizer.from_pretrained('microsoft/codebert-base')
+model = AutoModel.from_pretrained('microsoft/codebert-base')
+```
+```{r out.width='75%', out.extra='style="float:center; padding:10px"', echo=FALSE}
+knitr::include_graphics("../../images/model_download.png")
+```
+
+Then, we simply load the CodeSearchNet java dataset. The datasets library will take care of caching everything for a faster access to the data.
+
+```{python, eval=FALSE, echo=TRUE}
+from datasets import load_dataset
+dataset_train = load_dataset('martiwey/codesearchnet-java', split='train')
+dataset_valid = load_dataset('martiwey/codesearchnet-java', split='validation')
+dataset_codebase = load_dataset('martiwey/codesearchnet-java', split='train', data_files='codebase.jsonl')
 ```
 
 ### Training loop

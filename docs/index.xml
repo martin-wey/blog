@@ -7,7 +7,7 @@
     <description>Martin Weyssow - Blog
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 31 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 Dec 2021 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Finetuning CodeBERT for Semantic Code Search with PyTorch and Huggingface</title>
       <dc:creator>Martin Weyssow</dc:creator>
@@ -18,7 +18,7 @@
       <category>finetuning</category>
       <category>BERT</category>
       <guid>https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert</guid>
-      <pubDate>Fri, 31 Dec 2021 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 30 Dec 2021 00:00:00 +0000</pubDate>
       <media:content url="https://martin-wey.github.io/blog/posts/2021-12-31-finetuning-codebert/../../images/shared_vecs.png" medium="image" type="image/png" width="960" height="540"/>
     </item>
   </channel>

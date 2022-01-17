@@ -10,7 +10,7 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "About"
-      href: about.html
+      href: https://martin-wey.github.io/
     - icon: fa fa-twitter
       href: https://twitter.com/MWeyssow
     - icon: fa fa-github
